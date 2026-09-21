@@ -1,11 +1,16 @@
 const { user, artwork, exhibition } = require("../data");
 
 const createArtwork = (req, res) => {};
+
 const getAllArtwork = (req, res) => {
-  const works = artwork.map((work) => {
-    return work;
-  });
-  res.status(200).json({ size: works.length, works });
+  // const data = artwork.map((work) => {
+  //   return work;
+  // });
+  const data = artwork;
+
+  // res.status(200).json({ size: works.length, works });
+  // res.status(200).json(data); // this gives array [{}]
+  res.status(200).json({ data }); // this gives object {data}
 };
 
 const showArtwork = (req, res) => {

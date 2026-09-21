@@ -1,0 +1,68 @@
+import { useEffect, useState } from "react";
+console.log("test from the outside"); //  this works
+
+// fetch data
+
+const useFetchData = () => {
+  console.log("test from the in usefetchdata top"); //  this works
+
+  // why not 2 paramss
+  //###########
+  // states
+  //###########
+  const [data, setData] = useState([]); // why i need a state "to pass down data from parent to children" // why is empty
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  console.log("test from the in after states"); // this works
+
+  const fetchData = async () => {
+    console.log("test from the in fetch() top"); // only this works // stops here
+
+    setIsLoading(true);
+    setError("");
+
+    console.log("1. fetchData started");
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/artist-web/artwork`,
+      ); // not working i think code stops here
+      console.log("3. fetch completed");
+      console.log("response:", response);
+      console.log("status:", response.status);
+      if (!response.ok) {
+        console.log("4. response NOT OK");
+
+        setError("Something went wrong while fetching.");
+        console.log("error on the fetch");
+        setIsLoading(false);
+        return;
+      }
+
+      console.log("5. response OK");
+
+      const items = await response.json();
+      // const { size, works } = data;
+      // setArtworks(works);
+      setIsLoading(false);
+      console.log("6. JSON received:", items);
+
+      setData(items); //
+    } catch (error) {
+      setIsLoading(false);
+      console.log("7. FETCH ERROR:", error);
+
+      setError("Something went wrong while fetching.", error);
+      console.log(error);
+    }
+  }; // end
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return { isLoading, error, data, fetchData, setError, setIsLoading };
+};
+
+export default useFetchData;

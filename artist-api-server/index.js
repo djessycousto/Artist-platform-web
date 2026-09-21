@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 const { user, artwork, exhibition } = require("./data");
 const {
@@ -19,6 +20,7 @@ const artworkRouter = require("./router/artworkRouter");
 //
 
 // app.use("/", authRouter);
+app.use(cors());
 app.use("/api/artist-web", authRouter);
 app.use("/api/artist-web", artworkRouter);
 // app.use("/authentication", authRouter);
@@ -47,7 +49,7 @@ app.get("/", (req, res) => {
 // app.use(errorHandlerMiddleWare);
 
 //
-const port = 3000;
+const port = 8080;
 
 const start = function () {
   app.listen(port, () => {
