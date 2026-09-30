@@ -1,5 +1,6 @@
 const user = [
   {
+    id: "1",
     title: "Echoes of Form",
     artist: "ELENA_USER_ID",
     year: 2025,
@@ -13,6 +14,7 @@ const user = [
     isFeatured: true,
   },
   {
+    id: "2",
     title: "The Weight of Silence",
     artist: "ELENA_USER_ID",
     year: 2024,
@@ -25,6 +27,7 @@ const user = [
     isFeatured: false,
   },
   {
+    id: "3",
     title: "After the Rain",
     artist: "JULIAN_USER_ID",
     year: 2026,
@@ -38,6 +41,7 @@ const user = [
     isFeatured: true,
   },
   {
+    id: "4",
     title: "Fragments",
     artist: "JULIAN_USER_ID",
     year: 2025,
@@ -51,6 +55,7 @@ const user = [
     isFeatured: false,
   },
   {
+    id: "5",
     title: "Between Rooms",
     artist: "SIENNA_USER_ID",
     year: 2026,
@@ -67,6 +72,7 @@ const user = [
 
 const artwork = [
   {
+    id: "6",
     title: "Echoes of Form",
     artist: "ELENA_USER_ID",
     year: 2025,
@@ -80,6 +86,7 @@ const artwork = [
     isFeatured: true,
   },
   {
+    id: "7",
     title: "The Weight of Silence",
     artist: "ELENA_USER_ID",
     year: 2024,
@@ -92,6 +99,7 @@ const artwork = [
     isFeatured: false,
   },
   {
+    id: "8",
     title: "After the Rain",
     artist: "JULIAN_USER_ID",
     year: 2026,
@@ -105,6 +113,7 @@ const artwork = [
     isFeatured: true,
   },
   {
+    id: "9",
     title: "Fragments",
     artist: "JULIAN_USER_ID",
     year: 2025,
@@ -118,6 +127,7 @@ const artwork = [
     isFeatured: false,
   },
   {
+    id: "10",
     title: "Between Rooms",
     artist: "SIENNA_USER_ID",
     year: 2026,

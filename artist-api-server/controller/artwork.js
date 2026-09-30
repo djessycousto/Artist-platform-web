@@ -13,14 +13,31 @@ const getAllArtwork = (req, res) => {
   res.status(200).json({ data }); // this gives object {data}
 };
 
-const showArtwork = (req, res) => {
-  console.log("show current");
-  res.send("show current");
-}; // not working
+// const showArtwork = (req, res) => {
+//   console.log("show current");
+//   res.send("show current");
+// }; // not working
 
 const singleArtwork = (req, res) => {
-  console.log("single Artwork");
-  res.send("single Artwork");
+  const { id } = req.params;
+  console.log(id);
+
+  // console.log(artworkId);
+
+  const data = artwork.find((work) => {
+    console.log(work);
+
+    return work.id === id;
+  });
+
+  if (!data) {
+    return res.status(404).json({
+      success: false,
+      message: "data not found",
+    });
+  }
+
+  res.status(200).json({ success: true, data });
 };
 
 const updateArtwork = (req, res) => {
@@ -39,10 +56,11 @@ const deleteArtwork = (req, res) => {
 };
 
 module.exports = {
-  showArtwork,
+  // showArtwork,
   getAllArtwork,
   ArtworkPicture,
   deleteArtwork,
   updateArtwork,
   createArtwork,
+  singleArtwork,
 };
