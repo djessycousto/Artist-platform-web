@@ -12,23 +12,31 @@ import Artwork from "./pages/artwork-pages/Artworks";
 // import
 
 //====== Fetch Hooker
-import useFetchData from "../useFetchData";
+import { useFetchData } from "../useFetchData";
+import SingleArtwork from "./pages/artwork-pages/SingleArtwork";
+import Artworks from "./pages/artwork-pages/Artworks";
 
 const artworkURL = `/api/artist-web/artwork`;
 
 function App() {
   // const { data } = useFetchData(artworkURL);
   const { data, loading } = useFetchData(artworkURL);
+  console.log(data);
 
   if (loading) return <p>Loading...</p>;
   return (
     <>
-      {/* {loading && } */}
+      {/* nav outside */}
       <h1>Hello World</h1>
-      {/* <Home /> */}
-      {/* <Exhibition  /> */}
-
-      <Artwork data={data} />
+      <Routes>
+        {/* <Route path="/" element={<Artworks data={data} />}> */} working
+        {/* <Route path="/artwork" element={<Artworks data={data} />}> */} //
+        not working
+        {/* <Route path=":id" element={<SingleArtwork />} /> */}
+        {/* </Route> */}
+        <Route path="/" element={<Artworks data={data} />} />
+        <Route path="/:id" element={<SingleArtwork />} />
+      </Routes>
     </>
   );
 }

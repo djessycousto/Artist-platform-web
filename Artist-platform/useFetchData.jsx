@@ -31,43 +31,28 @@ const useFetchData = (url) => {
   return { data };
 };
 
-export default useFetchData;
+// Single Item hooks
 
-/////////////////////
+const useFetchSingleData = (id) => {
+  const [singleItem, setSingleItem] = useState(null);
+  console.log(singleItem);
 
-// import { useState, useEffect } from "react";
+  const fetchSingleData = async () => {
+    const response = await fetch(
+      `http://localhost:8080/api/artist-web/artwork/${id}`,
+    );
+    const result = await response.json();
 
-// const useFetchData = (url) => {
-//   const [data, setData] = useState([]);
+    console.log(result);
 
-//   console.log("HOOK RENDER:", data);
+    setSingleItem(result);
+  };
 
-//   useEffect(() => {
-//     console.log("EFFECT IS RUNNING");
+  useEffect(() => {
+    fetchSingleData();
+  }, [id]);
 
-//     const fetchData = async () => {
-//       console.log("FETCH STARTED");
-//       console.log("URL:", url);
+  return { singleItem };
+};
 
-//       try {
-//         const response = await fetch(url);
-
-//         console.log("FETCH FINISHED");
-
-//         const result = await response.json();
-
-//         console.log("RESULT:", result);
-
-//         setData(result.works);
-//       } catch (error) {
-//         console.log("ERROR:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return { data };
-// };
-
-// export default useFetchData;
+export { useFetchData, useFetchSingleData };

@@ -1,6 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const Artwork = ({ artworkList }) => {
+  // console.log(artworkList.id);
   return (
     // top blog same as the rest of the page
 
@@ -22,6 +23,14 @@ const Artwork = ({ artworkList }) => {
       </div>
       <p>{artworkList.artist}</p>
       <p>{artworkList.medium}</p>
+      {/* <Link to={`/artworks/${artworkList.id}`}>click for more </Link> */}
+      {/* <Link to={`/artwork/${artworkList.id}`}>
+        , This is the link{artworkList.title}
+      </Link> */}
+
+      {/* <Link to={`/api/artist-web/artwork/${artworkList.id}`}></Link> */}
+      {/* <Link to={`/api/artist-web/artwork/${artworkList.id}`}>Click me</Link> */}
+      <Link to={`/${artworkList.id}`}>Click me</Link>
     </article>
   );
 };

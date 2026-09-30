@@ -1,4 +1,5 @@
 import Artwork from "./Artwork";
+import { Outlet, Link } from "react-router-dom";
 
 // const Artworks = ({ data: artworks }) => {
 //  const artworks = data.data ?? [];
@@ -6,6 +7,7 @@ const Artworks = ({ data }) => {
   // const { size, works: artworks } = data;
   // const { works: artworks } = data;
   const artworks = data?.data ?? []; // ?? why and what this means
+
   return (
     //
 
@@ -31,6 +33,8 @@ const Artworks = ({ data }) => {
       {artworks.map((artworkList) => {
         return <Artwork artworkList={artworkList} key={artworkList.title} />;
       })}
+      {/* <Outlet /> */}
+      <p>AFTER OUTLET</p>
     </section>
   );
 };
