@@ -1,10 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 
 const Artwork = ({ artworkList }) => {
-  // console.log(artworkList.id);
   return (
-    // top blog same as the rest of the page
-
     <article>
       {/* here we got 
       
@@ -35,3 +32,5 @@ const Artwork = ({ artworkList }) => {
   );
 };
 export default Artwork;
+
+//  <Link to={`/${artworkList.id}`}>Click me</Link> this how my link is suppose to be

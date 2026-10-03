@@ -4,16 +4,8 @@ import { useFetchSingleData } from "../../../useFetchData";
 const SingleArtwork = () => {
   // do i have to passe as props?
   const { id } = useParams();
-  console.log(id, "id");
   const { singleItem } = useFetchSingleData(id);
-
-  //   const test = item?.item ?? []; // ?? why and what this means
-
-  //   const item = singleItem?.data ??; // how this is different
   const item = singleItem?.data; // if exist then look for data
-
-  //   console.log(singleItem);
-  //   console.log(singleItem?.data); // works all the time
   console.log(item, "item"); /// after reload revert to null first and breaks
   if (!item) {
     return <p>Loading...</p>;
