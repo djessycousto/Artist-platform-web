@@ -1,0 +1,42 @@
+{
+  "title": "Echoes of Form",
+  "artist": "Sienna Cole",
+  "categories": "sculpture",
+  "year": 2023,
+  "dimensions": {
+    "width": 600,
+    "height": 1100,
+    "depth": 400,
+    "unit": "mm",
+    "display": "600 × 1100 × 400 mm"
+  },
+  "medium": "Carved limestone",
+  "images": [
+    {
+      "url": "/images/artwork/echoes-of-form.jpg",
+      "alt": "Carved limestone sculpture titled Echoes of Form",
+      "isPrimary": true
+    }
+  ],
+  "paperStock": null,
+  "edition": {
+    "number": 1,
+    "total": 1,
+    "editionType": "unique",
+    "display": "Unique work"
+  },
+  "catalogueReference": "KV-2023-006",
+  "location": {
+    "locationType": "Gallery",
+    "name": "North Gallery",
+    "city": "London",
+    "country": "United Kingdom"
+  },
+  "description": "A carved limestone sculpture exploring repetition, erosion and organic architectural forms.",
+  "aboutTheItem": "Echoes of Form is carved from a single block of limestone. Its repeated curves reference both natural geological formations and architectural structures.",
+  "featured": false,
+  "specifications": {
+    "material": "Limestone",
+    "weight": "72 kg"
+  }
+}

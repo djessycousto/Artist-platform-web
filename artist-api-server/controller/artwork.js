@@ -1,12 +1,30 @@
-const { user, artwork, exhibition } = require("../data");
+// const { user, artwork, exhibition } = require("../data");
 
-const createArtwork = (req, res) => {};
+const Artwork = require("../model/Artwork");
 
-const getAllArtwork = (req, res) => {
-  // const data = artwork.map((work) => {
-  //   return work;
-  // });
-  const data = artwork;
+const createArtwork = async (req, res) => {
+  const artwork = await Artwork.create(req.body);
+  res.status(201).json({ artwork });
+  // res.send("created ");
+};
+
+const getAllArtwork = async (req, res) => {
+  console.log("hello");
+
+  try {
+    const artworks = await Artwork.find({});
+
+    if (!artworks) {
+      res
+        .status(401)
+        .json({ message: "This artwork does not exist", artworks: {} });
+      return;
+    }
+
+    res.status(200).json({ message: "success", artworks });
+  } catch (error) {
+    console.log(error);
+  }
 
   // res.status(200).json({ size: works.length, works });
   // res.status(200).json(data); // this gives array [{}]
@@ -18,31 +36,45 @@ const getAllArtwork = (req, res) => {
 //   res.send("show current");
 // }; // not working
 
-const singleArtwork = (req, res) => {
-  const { id } = req.params;
-  console.log(id);
+const singleArtwork = async (req, res) => {
+  const { id: artworkID } = req.params;
 
-  // console.log(artworkId);
+  const artwork = await Artwork.findOne({ _id: artworkID });
 
-  const data = artwork.find((work) => {
-    console.log(work);
-
-    return work.id === id;
-  });
-
-  if (!data) {
+  if (!artwork) {
     return res.status(404).json({
       success: false,
-      message: "data not found",
+      message: "artwork not found",
     });
   }
 
-  res.status(200).json({ success: true, data });
+  res.status(200).json({ success: true, artwork });
 };
 
-const updateArtwork = (req, res) => {
-  console.log("update Artwork");
-  res.send("update Artwork");
+const updateArtwork = async (req, res) => {
+  const { id: artworkID } = req.params;
+
+  console.log("ID:", artworkID);
+  console.log("BODY:", req.body);
+  try {
+    const artwork = await Artwork.findByIdAndUpdate(
+      {
+        _id: artworkID,
+      },
+      req.body,
+      {
+        // new: true,
+        returnDocument: "after",
+        // renValidator: true,
+      },
+    );
+
+    // not checks ?
+
+    res.status(200).json({ message: "success", artwork });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const ArtworkPicture = (req, res) => {
@@ -50,9 +82,18 @@ const ArtworkPicture = (req, res) => {
   res.send("ArtworkPict");
 };
 
-const deleteArtwork = (req, res) => {
-  console.log("delete artwork ");
-  res.send("delete artwork ");
+const deleteArtwork = async (req, res) => {
+  const { id: artworkID } = req.params;
+  const artwork = await Artwork.findOne({ _id: artworkID });
+
+  if (!artwork) {
+    res.status(400).json({ message: "No such a file exist to delete" });
+  }
+
+  // await artwork.deleteOne()
+  // await artwork.remove()
+
+  res.status(200).json({ message: "deleted" });
 };
 
 module.exports = {

@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+// const env = require("dotenv").config();
+
+//===> DB connect
+// const ConnectDataBase = require("./DB/dbConnect");
+const ConnectDataBase = require("./DB/dataBaseConnect");
 
 const { user, artwork, exhibition } = require("./data");
 const {
@@ -9,7 +14,7 @@ const {
   NotFoundError,
 } = require("./errors/errors");
 
-// app.use(express.json())
+app.use(express.json());
 
 // middleWear
 const authRouter = require("./router/authRoutes");
@@ -51,10 +56,19 @@ app.get("/", (req, res) => {
 //
 const port = 8080;
 
-const start = function () {
-  app.listen(port, () => {
-    console.log(`Server listening in port ${port}`);
-  });
+const uri =
+  "mongodb+srv://jessy:Freetest-01@cluster0.tlkf7hv.mongodb.net/artist-web?appName=Cluster0";
+
+const start = async function () {
+  try {
+    console.log("db connection started");
+    await ConnectDataBase(uri);
+    console.log("db connected successful ");
+
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (error) {}
 };
 
 start(port);
