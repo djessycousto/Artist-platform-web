@@ -1,5 +1,5 @@
 // const { user, artwork, exhibition } = require("../data");
-
+const mongoose = require("mongoose");
 const Artwork = require("../model/Artwork");
 
 const createArtwork = async (req, res) => {
@@ -9,8 +9,6 @@ const createArtwork = async (req, res) => {
 };
 
 const getAllArtwork = async (req, res) => {
-  console.log("hello");
-
   try {
     const artworks = await Artwork.find({});
 
@@ -28,7 +26,7 @@ const getAllArtwork = async (req, res) => {
 
   // res.status(200).json({ size: works.length, works });
   // res.status(200).json(data); // this gives array [{}]
-  res.status(200).json({ data }); // this gives object {data}
+  // res.status(200).json({ artwork }); // this gives object {data}
 };
 
 // const showArtwork = (req, res) => {
@@ -38,6 +36,16 @@ const getAllArtwork = async (req, res) => {
 
 const singleArtwork = async (req, res) => {
   const { id: artworkID } = req.params;
+
+  // 400 = bad request: the id isn't even a valid format
+  if (!mongoose.isValidObjectId(artworkID)) {
+    return res.status(400).json({
+      success: false,
+      message: "incorrect request, invalid artwork id",
+    });
+  }
+
+  // i need the above to show the error
 
   const artwork = await Artwork.findOne({ _id: artworkID });
 
