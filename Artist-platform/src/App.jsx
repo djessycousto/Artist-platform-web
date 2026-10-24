@@ -11,19 +11,19 @@ import Artwork from "./pages/artwork-pages/Artworks";
 // import "./App.css";
 // import
 
-//====== Fetch Hooker
+//====== Pages
 import { useFetchData } from "../useFetchData";
 import SingleArtwork from "./pages/artwork-pages/SingleArtwork";
 import Artworks from "./pages/artwork-pages/Artworks";
+import Home from "./pages/Home";
 
 const artworkURL = `/api/artist-web/artwork`;
 
 function App() {
   // const { data } = useFetchData(artworkURL);
-  const { data, loading } = useFetchData(artworkURL);
-  console.log(data);
+  const { data, isLoading, fetchError } = useFetchData(artworkURL);
 
-  if (loading) return <p>Loading...</p>;
+  if (isLoading) return <p>Loading...</p>;
   return (
     <>
       {/* nav outside */}
@@ -34,7 +34,8 @@ function App() {
         not working
         {/* <Route path=":id" element={<SingleArtwork />} /> */}
         {/* </Route> */}
-        <Route path="/" element={<Artworks data={data} />} />
+        <Route path="/" element={<Home data={data} />} />
+        <Route path="/artworks" element={<Artworks data={data} />} />
         <Route path="/:id" element={<SingleArtwork />} />
       </Routes>
     </>

@@ -1,10 +1,41 @@
+import { useState, useEffect } from "react";
 import Artwork from "./Artwork";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom"; // outlet is for a nested router
+import Categories from "./Categories";
 
 // const Artworks = ({ data: artworks }) => {
 //  const artworks = data.data ?? [];
+
 const Artworks = ({ data }) => {
-  const artworks = data?.data ?? [];
+  // Filter menu
+  const artworks = data?.artworks ?? [];
+  const allCategories = [
+    "All",
+    ...new Set(artworks.map((item) => item.categories)),
+  ];
+  console.log(allCategories, "all cat");
+
+  const [menuItem, setMenuitem] = useState(artworks);
+  // const [category, setCategory] = useState(allCategories); // i passed the unique category
+  const category = allCategories;
+  // states
+
+  const filterItem = (category) => {
+    if (category === "All") {
+      setMenuitem(artworks);
+      return;
+    }
+
+    const newCategory = artworks.filter((item) => {
+      return item.categories === category;
+    });
+
+    setMenuitem(newCategory);
+  };
+
+  useEffect(() => {
+    setMenuitem(artworks);
+  }, [artworks]);
 
   return (
     //
@@ -21,15 +52,12 @@ const Artworks = ({ data }) => {
       </section>
 
       <div>
-        <button>Click</button>
-        <button>Click</button>
-        <button>Click</button>
-        <button>Click</button>
+        <Categories category={category} filterItem={filterItem} />
       </div>
 
       {/* map */}
-      {artworks.map((artworkList) => {
-        return <Artwork artworkList={artworkList} key={artworkList.title} />;
+      {menuItem.map((artworkList) => {
+        return <Artwork artworkList={artworkList} key={artworkList._id} />;
       })}
       {/* <Outlet /> */}
       <p>AFTER OUTLET</p>

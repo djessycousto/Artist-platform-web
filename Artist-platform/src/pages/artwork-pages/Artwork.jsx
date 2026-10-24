@@ -27,7 +27,7 @@ const Artwork = ({ artworkList }) => {
 
       {/* <Link to={`/api/artist-web/artwork/${artworkList.id}`}></Link> */}
       {/* <Link to={`/api/artist-web/artwork/${artworkList.id}`}>Click me</Link> */}
-      <Link to={`/${artworkList.id}`}>Click me</Link>
+      <Link to={`/${artworkList._id}`}>Click me</Link>
     </article>
   );
 };

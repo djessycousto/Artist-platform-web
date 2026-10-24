@@ -1,58 +1,103 @@
+//  Here i use fetch the rest i will use more axios
+
 import { useState, useEffect } from "react";
 
 const useFetchData = (url) => {
-  const [data, setData] = useState({});
-  // const [data, setData] = useState([]);
+  // const [data, setData] = useState({});
 
+  //===> States <===//
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
+
+  // const [data, setData] = useState([]);
   // const [data, setData] = useState({ works: [] }); // this working fine
-  // console.log("HOOK RENDER:", data);
+
+  //===> fetch <===//
 
   const fetchData = async () => {
     try {
       const response = await fetch(url);
 
       if (!response.ok) {
-        console.log("6. response NOT OK");
+        setFetchError(
+          "Something went wrong with the server please try again later",
+        );
+
         return;
       }
 
       const result = await response.json();
-
       setData(result);
     } catch (error) {
-      console.log(error);
+      setFetchError(
+        "an error occur while fetching, we are unable to fetch data. please try again later",
+        error,
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
+  //===> use effect tracking url <===//
 
   useEffect(() => {
     fetchData();
   }, [url]);
 
-  return { data };
+  return { data, isLoading, fetchError };
 };
 
 // Single Item hooks
 
-const useFetchSingleData = (id) => {
+const useFetchSingleData = (url, id) => {
+  //===> States <===//
   const [singleItem, setSingleItem] = useState(null);
-  console.log(singleItem);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
 
+  //===> Fetch <===//
   const fetchSingleData = async () => {
-    const response = await fetch(
-      `http://localhost:8080/api/artist-web/artwork/${id}`,
-    );
-    const result = await response.json();
+    setIsLoading(true);
+    setFetchError(null);
+    try {
+      const response = await fetch(
+        `${url}/${id}`, // dynamic url
+      );
 
-    console.log(result);
+      if (!response.ok) {
+        //  new way
+        const errorBody = await response.json().catch(() => null);
+        console.log(errorBody, "error body");
 
-    setSingleItem(result);
+        setFetchError(
+          // "Something went wrong with the server please try again later",
+          errorBody?.message ?? "Something went wrong, please try again later",
+        );
+
+        // console.log(response);
+
+        return;
+      }
+
+      const result = await response.json();
+      setSingleItem(result);
+    } catch (error) {
+      setFetchError(
+        "an error occur while fetching, we are unable to fetch data. please try again later",
+        error,
+      );
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  //===> UseEffect tracking the id change  <===//
   useEffect(() => {
     fetchSingleData();
-  }, [id]);
+  }, [url, id]);
 
-  return { singleItem };
+  return { singleItem, isLoading, fetchError };
 };
 
 export { useFetchData, useFetchSingleData };

@@ -1,14 +1,23 @@
 import { useParams } from "react-router-dom";
 import { useFetchSingleData } from "../../../useFetchData";
+const url = `http://localhost:8080/api/artist-web/artwork`;
 
 const SingleArtwork = () => {
-  // do i have to passe as props?
   const { id } = useParams();
-  const { singleItem } = useFetchSingleData(id);
-  const item = singleItem?.data; // if exist then look for data
-  console.log(item, "item"); /// after reload revert to null first and breaks
-  if (!item) {
+  const { singleItem, isLoading, fetchError } = useFetchSingleData(url, id);
+  const item = singleItem?.artwork; // if exist then look for data
+
+  //====> checks
+  if (isLoading) {
     return <p>Loading...</p>;
+  }
+
+  if (fetchError) {
+    return <p>{fetchError}</p>;
+  }
+
+  if (!item) {
+    return <p>Artwork not found.</p>;
   }
 
   return (
@@ -18,7 +27,7 @@ const SingleArtwork = () => {
       <p>{item.year}</p>
       <p>{item.artist}</p>
       <p>{item.medium}</p>
-      <p>{item.dimensions}</p>
+      <p>{item.dimension}</p>
     </div>
   );
 };
