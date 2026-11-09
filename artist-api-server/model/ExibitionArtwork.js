@@ -12,3 +12,4 @@ const exhibitionArtwork = new mongoose.Schema(
   },
   { timestamps: true },
 );
+module.exports = mongoose.model("ExhibitionArtwork", exhibitionArtwork);

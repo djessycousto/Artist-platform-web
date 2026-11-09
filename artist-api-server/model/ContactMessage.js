@@ -12,3 +12,5 @@ const contactMessage = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+module.exports = mongoose.model("ContactMessage", contactMessage);

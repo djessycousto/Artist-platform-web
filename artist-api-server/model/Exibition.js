@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const exhibitionSchema = new mongoose.Schema(
   {
-    title: String,
+    title: {
+      type: String,
+      required: [true, "this need to be filled"],
+    },
     description: String,
     startDate: Date,
     endDate: Date,
@@ -18,3 +21,5 @@ const exhibitionSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+module.exports = mongoose.model("Exhibition", exhibitionSchema);

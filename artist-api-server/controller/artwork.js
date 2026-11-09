@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Artwork = require("../model/Artwork");
 
 const createArtwork = async (req, res) => {
-  const artwork = await Artwork.create(req.body);
+  const artwork = await Artwork.create(req.body); // no safe
   res.status(201).json({ artwork });
   // res.send("created ");
 };

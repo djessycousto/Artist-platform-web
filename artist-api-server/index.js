@@ -7,7 +7,7 @@ const cors = require("cors");
 // const ConnectDataBase = require("./DB/dbConnect");
 const ConnectDataBase = require("./DB/dataBaseConnect");
 
-const { user, artwork, exhibition } = require("./data");
+// const { user, artwork, exhibition } = require("./data");
 const {
   CustomAPIError,
   BadRequestError,
@@ -19,8 +19,11 @@ app.use(express.json());
 // middleWear
 const authRouter = require("./router/authRoutes");
 const artworkRouter = require("./router/artworkRouter");
+const exhibitionRouter = require("./router/ExibitionRouter/exhibionRouter");
+const userRouter = require("./router/userRouter/userRouter");
 // const errorHandlerMiddleWare = require("./errorHandler");
 // const notFound = require("./notFound");
+const errorHandlerMiddleWare = require("./middleware/ErrorHandler");
 
 //
 
@@ -28,6 +31,8 @@ const artworkRouter = require("./router/artworkRouter");
 app.use(cors());
 app.use("/api/artist-web", authRouter);
 app.use("/api/artist-web", artworkRouter);
+app.use("/api/artist-web", exhibitionRouter);
+app.use("/api/artist-web", userRouter);
 // app.use("/authentication", authRouter);
 
 app.get("/", (req, res) => {
@@ -51,7 +56,7 @@ app.get("/", (req, res) => {
 //
 
 // app.use(notFound);
-// app.use(errorHandlerMiddleWare);
+app.use(errorHandlerMiddleWare);
 
 //
 const port = 8080;
