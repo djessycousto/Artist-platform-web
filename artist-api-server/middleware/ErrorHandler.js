@@ -17,8 +17,7 @@ const errorHandlerMiddleWare = (err, req, res, next) => {
 
   //   res.status(500).json({ msg: err });
 
-  // better way
-
+  // // better way ==>
   let customErr = {
     statusCode: err.statusCode || 500,
     msg: err.message || "something went wrong",
