@@ -16,6 +16,7 @@ import { useFetchData } from "../useFetchData";
 import SingleArtwork from "./pages/artwork-pages/SingleArtwork";
 import Artworks from "./pages/artwork-pages/Artworks";
 import Home from "./pages/Home";
+import Contact from "./pages/artwork-pages/Contact";
 
 const artworkURL = `/api/artist-web/artwork`;
 
@@ -34,8 +35,10 @@ function App() {
         not working
         {/* <Route path=":id" element={<SingleArtwork />} /> */}
         {/* </Route> */}
+        {/* where the path is compose = "/ or home " */}
         <Route path="/" element={<Home data={data} />} />
-        <Route path="/artworks" element={<Artworks data={data} />} />
+        <Route path="/contact" element={<Artworks data={data} />} />
+        <Route path="/artworks" element={<Contact />} />
         <Route path="/:id" element={<SingleArtwork />} />
       </Routes>
     </>
