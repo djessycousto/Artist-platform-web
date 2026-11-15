@@ -21,6 +21,7 @@ const authRouter = require("./router/authRoutes");
 const artworkRouter = require("./router/artworkRouter");
 const exhibitionRouter = require("./router/ExibitionRouter/exhibionRouter");
 const userRouter = require("./router/userRouter/userRouter");
+const inquiryRouter = require("./router/messageInqueryRouter");
 // const errorHandlerMiddleWare = require("./errorHandler");
 // const notFound = require("./notFound");
 const errorHandlerMiddleWare = require("./middleware/ErrorHandler");
@@ -33,6 +34,7 @@ app.use("/api/artist-web", authRouter);
 app.use("/api/artist-web", artworkRouter);
 app.use("/api/artist-web", exhibitionRouter);
 app.use("/api/artist-web", userRouter);
+app.use("/api/artist-web", inquiryRouter);
 // app.use("/authentication", authRouter);
 
 app.get("/", (req, res) => {
