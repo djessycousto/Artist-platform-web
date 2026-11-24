@@ -1,3 +1,6 @@
+// const multer = require("multer");
+// const upload = multer({ dest: "uploads/" });
+
 // const { user, artwork, exhibition } = require("../data");
 const mongoose = require("mongoose");
 const Artwork = require("../model/Artwork");
@@ -85,9 +88,18 @@ const updateArtwork = async (req, res) => {
   }
 };
 
-const ArtworkPicture = (req, res) => {
-  console.log("ArtworkPict");
-  res.send("ArtworkPict");
+const ArtworkPicture = async (req, res) => {
+  const artworkId = req.params.id;
+  const image = req.file;
+
+  console.log("Artwork ID:", artworkId);
+  console.log("Uploaded image:", image);
+
+  res.status(200).json({
+    message: "Picture uploaded successfully",
+    artworkId,
+    filename: image.filename,
+  });
 };
 
 const deleteArtwork = async (req, res) => {

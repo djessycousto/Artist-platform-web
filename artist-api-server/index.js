@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const multer = require("multer");
+// const upload = multer({ dest: "uploads/" });
 // const env = require("dotenv").config();
 
 //===> DB connect
 // const ConnectDataBase = require("./DB/dbConnect");
 const ConnectDataBase = require("./DB/dataBaseConnect");
 
-// const { user, artwork, exhibition } = require("./data");
 const {
   CustomAPIError,
   BadRequestError,
