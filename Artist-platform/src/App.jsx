@@ -37,8 +37,8 @@ function App() {
         {/* </Route> */}
         {/* where the path is compose = "/ or home " */}
         <Route path="/" element={<Home data={data} />} />
-        <Route path="/contact" element={<Artworks data={data} />} />
-        <Route path="/artworks" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/artworks" element={<Artworks data={data} />} />
         <Route path="/:id" element={<SingleArtwork />} />
       </Routes>
     </>

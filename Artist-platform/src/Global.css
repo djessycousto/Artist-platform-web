@@ -1,0 +1,23 @@
+/* @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+
+/* Example Usage */
+h1,
+h2,
+h3,
+.editorial-quote {
+  font-family: var(--font-serif);
+}
+
+body,
+button,
+input {
+  font-family: var(--font-sans);
+}
+
+code,
+pre,
+.tag,
+.timestamp {
+  font-family: var(--font-mono);
+}
