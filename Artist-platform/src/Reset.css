@@ -13,12 +13,15 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  height: 100vh;
 }
 
 body {
   min-height: 100vh;
+  height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg);
 }
 
 img,

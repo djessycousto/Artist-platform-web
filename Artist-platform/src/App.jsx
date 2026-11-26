@@ -33,7 +33,6 @@ function App() {
   return (
     <>
       {/* nav outside */}
-      <h1>Hello World</h1>
       <NavBar />
       <Routes>
         {/*===== Home =====*/}
